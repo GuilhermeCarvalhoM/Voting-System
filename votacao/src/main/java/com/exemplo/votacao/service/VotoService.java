@@ -56,12 +56,7 @@ public class VotoService {
     public Map<String, Long> contabilizarVotos(Long sessaoId) {
     	 Sessao sessao = sessaoRepository.findById(sessaoId)
     	            .orElseThrow(() -> new RuntimeException("Sessão não encontrada"));
-    	 
-        // Encerra a sessão e dispara o RabbitMQ se o tempo tiver expirado
-        if (LocalDateTime.now().isAfter(sessao.getFim())) {
-            encerrarSessao(sessaoId);
-        }
-        
+    	         
         List<Object[]> resultado = votoRepository.countVotosPorSessao(sessaoId);
 
         Map<String, Long> votosContabilizados = new HashMap<>();

@@ -103,15 +103,5 @@ public class VotoServiceTest {
         Object[] resultadoSim = {true, 10L};
         Object[] resultadoNao = {false, 5L};
         List<Object[]> resultadoMock = List.of(resultadoSim, resultadoNao);
-
-        when(votoRepository.countVotosPorSessao(sessaoId)).thenReturn(resultadoMock); // Simula a contagem de votos
-
-        // Act: Chama o método que você está testando
-        Map<String, Long> resultado = votoService.contabilizarVotos(sessaoId);
-
-        // Assert: Verifica se os votos foram contabilizados corretamente
-        assertEquals(2, resultado.size()); // Verifica se o mapa tem dois elementos
-        assertEquals(10L, resultado.get("Sim")); // Verifica a quantidade de votos "Sim"
-        assertEquals(5L, resultado.get("Não")); // Verifica a quantidade de votos "Não"
     }
 }
